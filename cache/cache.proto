@@ -2,13 +2,6 @@ syntax = "proto3";
 
 package gendocu.sdk_generator.v3;
 
-service cache{
-  rpc createCache(createDelete_request) returns(createDelete_response){}
-
-  rpc deleteCache(createDelete_request) returns(createDelete_response){}
-
-}
-
 message createDelete_request{
   string cacheName = 1;
 
@@ -19,3 +12,11 @@ message createDelete_response{
   string response = 2;
 
 }
+
+service cache{
+  rpc createCache(createDelete_request) returns(createDelete_response){}
+
+  rpc deleteCache(createDelete_request) returns(createDelete_response){}
+
+}
+
