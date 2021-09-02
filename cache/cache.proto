@@ -1,5 +1,12 @@
 syntax = "proto3";
 
+service cache{
+  rpc createCache(createDelete_request) returns(createDelete_response){}
+
+  rpc deleteCache(createDelete_request) returns(createDelete_response){}
+
+}
+
 message createDelete_request{
   string cacheName = 1;
 
@@ -8,12 +15,5 @@ message createDelete_request{
 message createDelete_response{
   string error = 1;
   string response = 2;
-
-}
-
-service cache{
-  rpc createCache(createDelete_request) returns(createDelete_response){}
-
-  rpc deleteCache(createDelete_request) returns(createDelete_response){}
 
 }
