@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package gendocu.sdk_generator.v3;
+
 service cache{
   rpc createCache(createDelete_request) returns(createDelete_response){}
 
