@@ -1,0 +1,46 @@
+syntax = 'proto3';
+import "google/protobuf/struct.proto";
+
+message insertUpdate_request{
+  int32 pageSize = 1;
+  string cacheName = 2;
+  string tableName = 3;
+  int32 column_1_id = 4;
+  string column_2_date = 5;
+  string column_3_string = 6;
+  string column_4_string = 7;
+  int32 column_5_int = 8;
+}
+
+message insertUpdate_response{
+
+}
+
+message readDelete_request{
+  int32 pageSize = 1;
+  string cacheName = 2;
+  string tableName = 3;
+  int32 column_1_id = 4;
+}
+
+message readDelete_response{
+  int32 status = 1;
+  repeated string data= 2;
+  repeated schema schema_data = 3;
+}
+
+message schema{
+  google.protobuf.Struct metadata_fields = 1;
+}
+
+service dataCRUD{
+
+  rpc insertingData(insertUpdate_request) returns(readDelete_response){}
+
+  rpc updatingData(insertUpdate_request) returns(readDelete_response){}
+
+  rpc readingData(readDelete_request) returns(readDelete_response){}
+
+  rpc deletingData(readDelete_request) returns(readDelete_response){}
+
+}

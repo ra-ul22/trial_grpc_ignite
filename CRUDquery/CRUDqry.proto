@@ -1,0 +1,22 @@
+syntax = 'proto3';
+import "google/protobuf/struct.proto";
+
+message CRUDqry_request{
+  int32 pageSize = 1;
+  string cacheName = 2;
+  string qry = 3;
+}
+
+message CRUDqry_response{
+  int32 status = 1;
+  string error = 2;
+  repeated qry_metadata metadata = 3;
+}
+
+message qry_metadata{
+  google.protobuf.Struct metadata_fields = 1;
+}
+
+service CRUDqry{
+  rpc crudQry(CRUDqry_request) returns(CRUDqry_response){}
+}

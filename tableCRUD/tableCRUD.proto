@@ -1,0 +1,38 @@
+syntax = 'proto3';
+import "google/protobuf/struct.proto";
+
+
+message createTable_request{
+  int32 pageSize = 1;
+  string cacheName = 2;
+  string tableName = 3;
+  string column_1_primarykey_int = 4;
+  string column_2_date = 5;
+  string column_3_string = 6;
+  string column_4_string = 7;
+  string column_5_int = 8;
+}
+
+message createTable_response{
+  int32 status = 1;
+  repeated string data= 2;
+  repeated table_schema schema_data = 3;
+  optional string error = 4;
+}
+
+message table_schema{
+  google.protobuf.Struct metadata_fields = 1;
+}
+
+message deleteTable_request{
+  string cacheName= 1;
+  string tableName = 2;
+  int32 pageSize = 3;
+}
+
+
+service tableCRUD{
+  rpc creatingTable(createTable_request) returns(createTable_response){}
+
+  rpc deletingTable(deleteTable_request) returns(createTable_response){}
+}

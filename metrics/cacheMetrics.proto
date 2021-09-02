@@ -1,0 +1,40 @@
+syntax = "proto3";
+import "google/protobuf/struct.proto";
+
+message metrics_request{
+  string cacheName = 1;
+  int32 pageSize = 2;
+}
+
+message metrics_response{
+  int32 reads = 1;
+  int32 writes = 2;
+  int32 hits = 3;
+  int32 misses = 4;
+}
+
+message metadata_request{
+
+}
+
+message metadata_response{
+  int32 status = 1;
+  string error = 2;
+  repeated metadata metadata = 3;
+}
+
+message metadata{
+  google.protobuf.Struct metadata_fields = 1;
+}
+
+message show_response{
+  repeated string table_names = 1;
+}
+
+service metrics{
+  rpc cacheMetrics(metrics_request) returns(metrics_response){}
+
+  rpc getCache(metadata_request) returns(metadata_response){}
+
+  rpc showTables(metrics_request) returns(metadata_response){}
+}
